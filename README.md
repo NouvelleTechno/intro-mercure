@@ -1,6 +1,6 @@
-# chat-ajax
+# Intro Mercure
 
-Live Coding : Notifications temps réel avec Mercure
+**Live Coding :** Notifications temps réel avec Mercure
 
 ATTENTION : Les fichiers fournis dans ce dépôt sont des exemples qu'il convient d'adapter au projet dans lequel vous souhaitez les intégrer. Ils ne sont pas totalement sécurisés ni complets.
 
