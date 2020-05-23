@@ -12,7 +12,6 @@ if(isset($_GET['user']) && !empty($_GET['user'])){
 if(!empty($_POST)){
     if(isset($_POST['dest']) && !empty($_POST['dest']) &&
        isset($_POST['message']) && !empty($_POST['message'])){
-        require_once 'inc/mercure_post.php';
         $id = strip_tags($_POST['dest']);
         $sql = 'INSERT INTO messages(exp_id, dest_id, message) VALUES (:exp, :dest, :message)';
 
@@ -23,6 +22,24 @@ if(!empty($_POST)){
         $query->bindValue(':message', strip_tags($_POST['message']), PDO::PARAM_STR);
 
         $query->execute();
+
+        // Attention, requête à sécuriser par un bindValue
+        $query = $db->query('SELECT count(id) as nombre FROM messages WHERE dest_id = '.$id.' AND unread = 1;');
+
+        $compte = $query->fetch();
+
+        require_once 'inc/mercure_post.php';
+
+        $topic = 'https://intro-mercure.test/users/message/'.$id;
+
+        $data = [
+            'sujet' => 'message',
+            'exp' => $_SESSION['user']['pseudo'],
+            'dest' => $id,
+            'total' => $compte['nombre']
+        ];
+
+        mercurePost($topic, $data);
 
         header('Location: messagerie.php');
     }

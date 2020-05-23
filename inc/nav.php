@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="/index.php">Le chat</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -37,7 +37,7 @@
                 }
                 ?>
                 <li class="nav-item">
-                    <a class="btn btn-light" href="/messagerie.php"><i class="la la-envelope la-2x"></i><span id="pm" class="badge badge-primary"></span></a>
+                    <a class="btn btn-light" href="/messagerie.php"><i class="la la-envelope la-2x"></i><span id="pm" class="badge badge-primary"><?= ($compte['nombre'] > 0) ? $compte['nombre'] : '' ?></span></a>
                 </li>
             </ul>
         </div>

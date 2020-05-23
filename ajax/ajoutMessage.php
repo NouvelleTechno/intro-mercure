@@ -32,6 +32,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             // On exécute en vérifiant si ça fonctionne
             if($query->execute()){
+
+                // On envoie la notification par Mercure
+                require_once '../inc/mercure_post.php';
+
+                $topic = 'https://intro-mercure.test/users/chat';
+
+                $data = [
+                    'sujet' => 'chat',
+                    'pseudo' => $_SESSION['user']['pseudo'],
+                    'message' => strip_tags($donnees->message),
+                    'date' => date('Y-m-d H:i:s')
+                ];
+
+                mercurePost($topic, $data);
+
                 http_response_code(201);
                 echo json_encode(['message' => 'Enregistrement effectué']);
             }else{

@@ -1,3 +1,17 @@
+<?php
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIqIl0sInB1Ymxpc2giOlsiKiJdfX0.M1yJUov4a6oLrigTqBZQO_ohWUsg3Uz1bnLD4MIyWLo
+require_once 'bdd.php';
+
+if(isset($_SESSION['user']['id'])){
+    $sql = 'SELECT count(id) as nombre FROM messages WHERE dest_id = '.$_SESSION['user']['id'].' AND unread = 1;';
+
+    $query = $db->query($sql);
+
+    $compte = $query->fetch();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
